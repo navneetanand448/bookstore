@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17       # Use '17' (17.4 might not exist yet)
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: book-store
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # FIXED: Added space and leading slash
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+# IMPORTANT: You must add this at the very bottom of your file!
+volumes:
+  postgres_data:
